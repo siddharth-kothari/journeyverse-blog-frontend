@@ -37,6 +37,8 @@ const Register: React.FC = () => {
   const handleSubmit = async(event: React.FormEvent) => {
     event.preventDefault();
 
+    
+
     // Validate form fields
     const validationErrors: Errors = {};
     if (name.trim() === '') {
@@ -77,53 +79,62 @@ const Register: React.FC = () => {
     // console.log('Profile Picture:', profilePicture);
 
       try {
+
+        const data = new FormData();
+        data.append('files', profilePicture, profilePicture.name);
+        const response = await axios.post('http://localhost:1337/api/upload', data)
+
         
-        const userData = {
-          username: username,
-          email: email,
-          password: password,
-          name:name,
-          bio:bio,
-          location:location
-        };
 
-        const {data,status}  = await axios.post('http://localhost:3000/api/register/', {
-          userData
-          }, {
-            headers: {
-              'Content-Type': 'application/json'
-            }
+        if(response.status == 200){
+          const userData = {
+            
+              username: username,
+              email: email,
+              password: password,
+              name:name,
+              bio:bio,
+              location:location,
+              image:[response.data[0].id]
+            
+            
+          };
+  
+          var body = JSON.stringify(userData);
+  
+          const { data }  = await api.post('http://localhost:1337/api/auth/local/register', body )
+          const user = data;
+          console.log(user,data);
+
+          if(user){
+            const loginres = await LoginHelper({
+              username,
+              password
+            });
+
+            if(loginres && loginres.ok){
+
+            setName('');
+            setUsername('');
+            setEmail('');
+            setPassword('');
+            setLocation('');
+            setBio('');
+            setConfirmPassword('');
+            setProfilePicture(null);
+            setProfilePicturePreview(null);
+            setErrors({});    
+            router.push('/');
           }
-        )
-        const user = data.data;
-        console.log('userdata',data.data)
-        console.log('status',status)
 
-        if(status === 201){
-          const loginres = await LoginHelper({
-            username,
-            password
-          });
-
-          if(loginres && loginres.ok){
-
-          setName('');
-          setUsername('');
-          setEmail('');
-          setPassword('');
-          setLocation('');
-          setBio('');
-          setConfirmPassword('');
-          setProfilePicture(null);
-          setProfilePicturePreview(null);
-          setErrors({});    
-          router.push('/');
-        }
+          } else {
+            return null
+          }
 
         } else {
-          return null
+          alert("something went wrong")
         }
-
+        
       } catch (error) {
         alert(error)
       }
