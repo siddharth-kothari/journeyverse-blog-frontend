@@ -19,7 +19,6 @@
     "next": "13.4.9",
     "next-auth": "^4.22.1",
     "next-mdx-remote": "^4.4.1",
-    "next-nprogress": "^1.4.0",
     "nextjs-progressbar": "^0.0.16",
     "nprogress": "^0.2.0",
     "postcss": "8.4.25",
