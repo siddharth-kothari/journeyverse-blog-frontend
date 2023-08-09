@@ -4,7 +4,7 @@ import Header from '@/components/Header'
 import './../styles/globals.css'
 import type { Metadata } from 'next'
 import Footer from '@/components/Footer'
-import NextNProgress from 'nextjs-progressbar';
+// import NextNProgress from 'nextjs-progressbar';
 import AuthProvider from '@/utils/AuthProvider'
 
 // export const metadata: Metadata = {
@@ -23,7 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="bg-[#f2f2f2]">
         <AuthProvider>
-          <NextNProgress color="#fff" height={5}/>
+          {/* <NextNProgress color="#fff" height={5}/> */}
           <Header />
           {children}
           <Footer />
