@@ -6,6 +6,10 @@ import { api } from '@/app/api';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import { LoginHelper } from '@/utils/loginHelper';
+import defaultPic from './../assets/default-avatar.png'
+import Image from 'next/image'
+
+
 
 const Register: React.FC = () => {
   const [name, setName] = useState('');
@@ -169,6 +173,34 @@ const Register: React.FC = () => {
       <div className="max-w-xl w-full mx-5 my-24 md:m-28 p-6 bg-black rounded shadow-md">
         <h2 className="text-3xl font-bold mb-6 text-center text-white">Register</h2>
         <form onSubmit={handleSubmit}>
+        <div className=" w-fit mx-auto mb-4 items-center">
+            <div className="mx-auto relative">
+              {profilePicturePreview ? (
+                <img src={profilePicturePreview} alt="Profile Preview" className="mt-2 max-w-[8rem] object-cover object-center rounded-[50%]" />
+              ) : (
+               <>
+                <Image
+                  className='mt-2 max-w-[8rem] relative object-cover  object-center rounded-[50%]'
+                      src={defaultPic}
+                      alt=" Default Profile Preview"
+                />
+                  <label className="w-full absolute bottom-0 overflow-hidden text-center text-white h-[25%] bg-[#000]/40 cursor-pointer hover:cursor-pointer" htmlFor='profilePicture'>Browse</label>
+                </>
+              )}
+          
+              <input
+                type="file"
+                id="profilePicture"
+                accept="image/*"
+                className="w-full absolute bottom-0 overflow-hidden opacity-0"
+                onChange={handleFileChange}
+              />
+            </div>
+            
+            
+              
+            
+          </div>
           <div className='flex justify-between items-center gap-4'>
             <div className="mb-4">
               <label htmlFor="name" className="block text-white text-sm font-medium mb-2">
@@ -314,9 +346,7 @@ const Register: React.FC = () => {
               )}
             </div>
           </div>
-
           
-
           <div className="mb-4 ">
             <label htmlFor="bio" className="block text-white text-sm font-medium mb-2">
               Bio
@@ -339,25 +369,7 @@ const Register: React.FC = () => {
               <p className="text-red-500 text-sm mt-1">{errors.bio}</p>
             )}
           </div>
-          <div className="w-full mb-4 flex items-center">
-            <div>
-
-            <label htmlFor="profilePicture" className="block text-white text-sm font-medium mb-2">
-              Profile Picture
-            </label>
-            <input
-              type="file"
-              id="profilePicture"
-              accept="image/*"
-              className="w-full"
-              onChange={handleFileChange}
-            />
-            </div>
-            
-            {profilePicturePreview && (
-              <img src={profilePicturePreview} alt="Profile Preview" className="mt-2 max-w-[6rem] rounded-[100%]" />
-            )}
-          </div>
+          
           <div className='w-full flex'>
             <button
               type="submit"

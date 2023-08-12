@@ -48,7 +48,10 @@ const HamburgerMenu: React.FC = () => {
         <div className="absolute z-10 right-0 top-[20px] mt-2 py-2 w-48 hover:text-white text-gray-400 bg-black rounded-md shadow-lg transition duration-300">
           
           {status !== "loading" && user && (
+            <>
               <Link href={`/profile/${user?.user?.slug}`} className="cursor-pointer block px-4 py-2 text-sm hover:text-white text-gray-400">Profile</Link>
+              <Link href='/create-post' className="cursor-pointer block px-4 py-2 text-sm hover:text-white text-gray-400">Create a Post</Link>
+              </>
             )}
             {!user && (
               <p onClick={()=>signIn()} className="cursor-pointer block px-4 py-2 text-sm hover:text-white text-gray-400">Sign In</p>

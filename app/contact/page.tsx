@@ -134,7 +134,7 @@ const Contact = () => {
   };
 
   return (
-    <div className='md:w-[75%] mx-auto my-20'>
+    <div className='md:w-[60%] mx-auto my-12'>
       {showtoast && (<ToastContainer
         position="top-center"
         autoClose={2000}
@@ -148,14 +148,14 @@ const Contact = () => {
         theme="dark"
       />)}
       <div className='text-center mb-10'>
-        <p className='text-3xl md:text-4xl font-bold leading-10'>Contact Us</p>
-        <p className='md:text-lg text-gray-500 leading-10 mt-4'>Any question or remarks? Just write us a message!</p>
+        <p className='text-3xl md:text-4xl font-serif font-bold leading-10'>Contact Us</p>
+        <p className='md:text-lg text-gray-500 font-serif leading-10 mt-4'>Any question or remarks? Just write us a message!</p>
       </div>
 
       <div className='w-full block md:flex md:gap-3 bg-white rounded-xl p-2'>
         <div className='md:w-[35%] bg-black rounded-xl p-7'>
           <p className='text-2xl font-semibold leading-10 text-white'>Contact Information</p>
-          <p className=' text-white leading-10'>Fill up the form and we will get back to you.</p>
+          <p className=' text-white leading-6 mt-4'>Fill up the form and we will get back to you.</p>
 
           <div className='my-10'>
             <div className='flex gap-2 items-center my-3'>

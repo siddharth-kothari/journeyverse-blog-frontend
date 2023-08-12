@@ -46,7 +46,7 @@ const Header = () => {
   return (
     
     <nav className={`flex items-center text-white justify-evenly md:block bg-black px-5 md:px-0`}>
-        <div className='flex w-full items-center justify-between py-5 md:border-b md:border-white/20 md:w-[90%] mx-auto'>
+        <div className='flex w-full items-center justify-between pt-5 pb-1 md:border-b md:border-white/20 md:w-[90%] mx-auto'>
           <div>
               <Link href="/" className='font-serif font-bold text-xl lg:text-2xl 2xl:text-3xl'>JourneyVerse</Link>
           </div>
@@ -90,6 +90,7 @@ const Header = () => {
                   {isProfileDropdownOpen && (
                   <div className="absolute z-10 left-0 top-[25px] mt-2 py-2 w-36 bg-black rounded-md shadow-lg transform translate-y-1 transition-all ease-in-out duration-300">
                     <Link href={`/profile/${user?.user?.username}`} className="cursor-pointer block px-4 py-2 text-sm hover:text-white text-gray-400">Profile</Link>
+                    <Link href={`/create-post`} className="cursor-pointer block px-4 py-2 text-sm hover:text-white text-gray-400">Create a Post</Link>
                     <p onClick={()=>signOut()} className="cursor-pointer block px-4 py-2 text-sm hover:text-white text-gray-400">Logout</p>
                   </div>
                 )}
@@ -108,7 +109,7 @@ const Header = () => {
           <HamburgerMenu />
         </div>
 
-        <div className='hidden md:flex md:justify-center md:items-center container mx-auto py-5'>
+        <div className='hidden md:flex md:justify-center md:items-center container mx-auto py-1'>
           <ul className='flex items-center justify-center gap-5'>
             <li><Link href="/">Home</Link></li>
             <li 
